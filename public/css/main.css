@@ -1,0 +1,489 @@
+:root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #17171f;
+    --border: #1e1e2e;
+    --border2: #2a2a3e;
+    --text: #e2e2ee;
+    --muted: #5a5a7a;
+    --muted2: #8080a0;
+    --accent1: #ff6eb4;
+    --accent2: #a78bfa;
+    --accent3: #38bdf8;
+    --green: #4ade80;
+    --yellow: #fbbf24;
+    --red: #f87171;
+    --mono: 'Space Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --radius: 10px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Subtle grid background */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(167, 139, 250, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(167, 139, 250, 0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Rainbow stripe */
+.rainbow-bar {
+    height: 3px;
+    background: linear-gradient(90deg,
+            #e40303 0%,
+            #e40303 16.6%,
+            #ff8c00 16.6%,
+            #ff8c00 33.3%,
+            #ffed00 33.3%,
+            #ffed00 50%,
+            #008026 50%,
+            #008026 66.6%,
+            #004dff 66.6%,
+            #004dff 83.3%,
+            #750787 83.3%,
+            #750787 100%);
+}
+
+/* ── Header ── */
+header {
+    position: relative;
+    z-index: 1;
+    padding: 2rem 2rem 1.75rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Pride flag emoji rendered large, not gradient-clipped */
+.logo-flag {
+    font-size: 1.8rem;
+    line-height: 1;
+    /* override any inherited text-fill */
+    -webkit-text-fill-color: initial;
+}
+
+.logo-text-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.logo {
+    font-family: var(--mono);
+    font-size: 1.35rem;
+    font-weight: 700;
+    /* 6-stop pride flag gradient across the text */
+    background: linear-gradient(90deg,
+            #e40303 0%,
+            #ff8c00 20%,
+            #ffed00 38%,
+            #008026 55%,
+            #004dff 75%,
+            #750787 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+}
+
+.logo-sub {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* ── Main layout ── */
+main {
+    position: relative;
+    z-index: 1;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+}
+
+/* ── Section heading ── */
+.section-heading {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.section-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+/* ── Footer ── */
+footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 1.25rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+}
+
+footer a {
+    color: var(--accent1);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ── Navbar ── */
+.navbar {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--muted2);
+    text-decoration: none;
+    padding: 0.5rem 0.85rem;
+    border-radius: 7px;
+    border: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.nav-link:hover {
+    color: var(--text);
+    border-color: var(--border2);
+    background: var(--surface);
+}
+
+.nav-link.active {
+    color: var(--text);
+    border-color: var(--border2);
+    background: var(--surface);
+}
+
+/* ── Hero ── */
+.hero {
+    padding: 3rem 0 3.5rem;
+    text-align: left;
+    max-width: 720px;
+}
+
+.hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    margin-bottom: 1.25rem;
+}
+
+.hero-title {
+    font-family: var(--sans);
+    font-size: clamp(2.25rem, 5.5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+}
+
+.hero-title-grad {
+    background: linear-gradient(90deg,
+            #e40303 0%,
+            #ff8c00 20%,
+            #ffed00 38%,
+            #008026 55%,
+            #004dff 75%,
+            #750787 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-sub {
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: var(--muted2);
+    margin-bottom: 2rem;
+    max-width: 560px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+}
+
+/* ── Buttons ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 0.85rem 1.35rem;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: opacity 0.15s, transform 0.1s, border-color 0.15s, background 0.15s;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent2), var(--accent1));
+    color: #fff;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-ghost {
+    background: var(--surface);
+    border-color: var(--border2);
+    color: var(--text);
+}
+
+.btn-ghost:hover {
+    border-color: var(--accent2);
+    color: var(--accent2);
+}
+
+/* ── Feature grid ── */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.875rem;
+    margin-bottom: 3rem;
+}
+
+.feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.4rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.15s;
+}
+
+.feature-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-2px);
+}
+
+.feature-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.04) 0%, transparent 55%);
+    pointer-events: none;
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    margin-bottom: 0.85rem;
+    -webkit-text-fill-color: initial;
+}
+
+.feature-title {
+    font-family: var(--mono);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.55rem;
+}
+
+.feature-title code {
+    background: rgba(167, 139, 250, 0.12);
+    color: var(--accent2);
+    padding: 0.12rem 0.4rem;
+    border-radius: 5px;
+    font-size: 0.82rem;
+}
+
+.feature-desc {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--muted2);
+}
+
+.feature-desc code {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent2);
+    background: rgba(167, 139, 250, 0.1);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+}
+
+.feature-desc a {
+    color: var(--accent1);
+    text-decoration: none;
+}
+
+.feature-desc a:hover {
+    text-decoration: underline;
+}
+
+/* ── CTA strip ── */
+.cta-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 1.75rem 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-strip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(255, 110, 180, 0.07) 0%,
+            rgba(167, 139, 250, 0.05) 50%,
+            transparent 100%);
+    pointer-events: none;
+}
+
+.cta-strip-text {
+    position: relative;
+    z-index: 1;
+}
+
+.cta-strip-title {
+    font-family: var(--sans);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.01em;
+}
+
+.cta-strip-sub {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted2);
+    letter-spacing: 0.04em;
+}
+
+.cta-strip .btn {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Doc row ── */
+.doc-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+}
+
+.doc-link {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--muted2);
+    text-decoration: none;
+    padding: 0.55rem 0.95rem;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--surface);
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.doc-link:hover {
+    border-color: var(--accent2);
+    color: var(--accent2);
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 1.25rem 1rem 1rem;
+    }
+
+    .logo {
+        font-size: 1.15rem;
+    }
+
+    .stat-value {
+        font-size: 1.4rem;
+    }
+
+    .navbar {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .hero {
+        padding: 2rem 0 2.5rem;
+    }
+
+    .cta-strip {
+        padding: 1.4rem 1.4rem;
+    }
+
+    .cta-strip-title {
+        font-size: 1.1rem;
+    }
+}
